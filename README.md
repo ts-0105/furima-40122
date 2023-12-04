@@ -1,24 +1,58 @@
-# README
+## usersTable
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column    |Type       |Options        |
+|----------|-----------|---------------|
+|name      |string     |null: false    |
+|email     |string     |null: false    | 
+|password  |string     |null: false    |
 
-Things you may want to cover:
 
-* Ruby version
+### Association
+- has_many :item
+- has_many :bought
+- has_many :address
 
-* System dependencies
+## itemsTable
 
-* Configuration
+|Column       |Type       |Options        |
+|-------------|-----------|---------------|
+|name         |storing    |null: false    |
+|condition    |storing    |null: false    |
+|region       |storing    |null: false    |
+|delivery_date|storing    |null: false    |
+|user_id      |references |null: false    |
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_one :bought
+-
 
-* Services (job queues, cache servers, search engines, etc.)
+## boughtsTable
 
-* Deployment instructions
+|Column    |Type       |Options        |
+|----------|-----------|---------------|
+|bought    |string     |null: false    |
+|user_id   |references |null: false    | 
+|items_id  |references |null: false    |
 
-* ...
+
+### Association
+- belongs_to :user
+- belongs_to :item
+-
+
+## addressesTable
+
+|Column               |Type       |Options        |
+|---------------------|-----------|---------------|
+|shipping_address     |string     |null: false    |
+|shipping_source      |string     |null: false    | 
+|user_id              |references |null: false    |
+
+
+### Association
+- belongs_to :user
+-
+-
