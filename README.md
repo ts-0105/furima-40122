@@ -18,12 +18,16 @@
 
 ## itemsTable
 
-|Column       |Type       |Options        |
-|-------------|-----------|---------------|
-|name         |storing    |null: false    |
-|condition    |storing    |null: false    |
-|region       |storing    |null: false    |
-|delivery_date|storing    |null: false    |
+|Column       |Type       |Options         |
+|-------------|-----------|----------------|
+|image        |string     |                |
+|name         |string     |null: false     |
+|text         |text       |null: false     |
+|category     |integer    |null: false     |
+|condition    |integer    |null: false     |
+|load         |integer    |null: false     |
+|region       |integer    |null: false     |
+|delivery_date|integer    |null: false     |
 |user         |references |null: false foreign_key: true|
 
 
@@ -51,7 +55,7 @@
 |Column               |Type       |Options        |
 |---------------------|-----------|---------------|
 |post_num             |integer    |null: false    |
-|region               |string     |null: false    |
+|region               |integer    |null: false    |
 |city                 |string     |null: false    |
 |street               |string     |null: false    |
 |building             |string     |               |
