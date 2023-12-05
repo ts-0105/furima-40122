@@ -18,17 +18,17 @@
 
 ## itemsTable
 
-|Column       |Type       |Options         |
-|-------------|-----------|----------------|
-|image        |string     |                |
-|name         |string     |null: false     |
-|text         |text       |null: false     |
-|category     |integer    |null: false     |
-|condition    |integer    |null: false     |
-|load         |integer    |null: false     |
-|region       |integer    |null: false     |
-|delivery_date|integer    |null: false     |
-|user         |references |null: false foreign_key: true|
+|Column           |Type       |Options         |
+|-----------------|-----------|----------------|
+|name             |string     |null: false     |
+|text             |text       |null: false     |
+|category_id      |integer    |null: false     |
+|condition_id     |integer    |null: false     |
+|load_id          |integer    |null: false     |
+|region_id        |integer    |null: false     |
+|delivery_date_id |integer    |null: false     |
+|price            |integer    |null: false     |
+|user             |references |null: false foreign_key: true|
 
 
 
@@ -54,12 +54,12 @@
 
 |Column               |Type       |Options        |
 |---------------------|-----------|---------------|
-|post_num             |integer    |null: false    |
-|region               |integer    |null: false    |
+|post_num             |string     |null: false    |
+|region_id            |integer    |null: false    |
 |city                 |string     |null: false    |
 |street               |string     |null: false    |
 |building             |string     |               |
-|phone_num            |integer    |null: false    |
+|phone_num            |string     |null: false    |
 |bought               |references |null: false foreign_key: true|
 
 
