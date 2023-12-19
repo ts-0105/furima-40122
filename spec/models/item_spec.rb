@@ -53,6 +53,31 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Delivery date can't be blank"
       end
+      it 'category_idが1では登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Category can't be blank"
+      end
+      it 'condition_idが1では登録できない' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Condition can't be blank"
+      end
+      it 'load_idが1では登録できない' do
+        @item.load_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Load can't be blank"
+      end
+      it 'region_idが1では登録できない' do
+        @item.region_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Region can't be blank"
+      end
+      it 'delivery_date_idが1では登録できない' do
+        @item.delivery_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Delivery date can't be blank"
+      end
       it 'priceが空では登録できない' do
         @item.price = ''
         @item.valid?
@@ -76,6 +101,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is not a number'
       end
+
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+        end
     end
   end
 end
