@@ -6,8 +6,9 @@ class Item < ApplicationRecord
   belongs_to :load
   belongs_to :region
 
-  belongs_to :user
   has_one_attached :image
+  has_one :bought
+  belongs_to :user
 
   validates :name, :text, :image, :category_id, :condition_id, :load_id, :region_id, :delivery_date_id, :price, presence: true
   validates :category_id, :condition_id, :load_id, :region_id, :delivery_date_id,
