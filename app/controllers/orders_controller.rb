@@ -1,12 +1,14 @@
 class OrdersController < ApplicationController
+  before_action :set_item
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create, :edit]
+
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
     @bought_address = BoughtAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @bought_address = BoughtAddress.new(bought_address_params)
     if @bought_address.valid?
       pay_item(@item)
@@ -28,11 +30,20 @@ class OrdersController < ApplicationController
   def pay_item(item)
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: item.price  # 商品の値段
-        card: bought_address_params[:token],    # カードトークン
+        amount: item.price,  # 商品の値段
+        card: bought_address_params[:token],   # カードトークン
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
   end
 
+  def move_to_index
+    if @item.bought.present? || current_user.id == @item.user.id
+    redirect_to controller: :items, action: :index
+    end
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
 end
