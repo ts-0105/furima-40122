@@ -4,10 +4,11 @@ class BoughtAddress
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
-    validates :region_id, :city, :street, :building, :phone_num, :user_id, :item_id, :token
+    validates :region_id, :city, :street, :phone_num, :user_id, :item_id, :token
     validates :post_num, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   end
   validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :phone_num, format: { with: /\A\d{10,11}\z/ }
 
   def save
     # 各テーブルにデータを保存する処理を書く
